@@ -1,22 +1,3 @@
-echo "*/.idea/" >> .gitignore
-echo "*/AppData/" >> .gitignore
-echo "*.zip" >> .gitignore
-echo "*.lock" >> .gitignore
-echo "__pycache__/" >> .gitignore
-echo "*.pyc" >> .gitignore
-# Системные файлы Windows
-ntuser.dat*
-*.ini
-*.LOG*
-
-# Временные и служебные файлы
-*.lock
-__pycache__/
-*.pyc
-
-# Файлы IDE
-.idea/
-.vscode/
 # Системные файлы Windows
 ntuser.dat*
 *.ini
@@ -26,13 +7,10 @@ ntuser.dat*
 poetry.lock
 pyproject.toml
 
-# Служебные файлы и папки IDE
-.idea/
-.vscode/
-
 # Временные файлы Python
 __pycache__/
 *.pyc
-*.pyo
 
-
+# Файлы IDE
+.idea/
+.vscode/
