@@ -17,3 +17,22 @@ __pycache__/
 # Файлы IDE
 .idea/
 .vscode/
+# Системные файлы Windows
+ntuser.dat*
+*.ini
+*.LOG*
+
+# Файлы управления Python проектами
+poetry.lock
+pyproject.toml
+
+# Служебные файлы и папки IDE
+.idea/
+.vscode/
+
+# Временные файлы Python
+__pycache__/
+*.pyc
+*.pyo
+
+
