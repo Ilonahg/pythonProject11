@@ -14,3 +14,6 @@ __pycache__/
 # Файлы IDE
 .idea/
 .vscode/
+**/ntuser.dat.LOG1
+**/ntuser.dat.LOG2
+**/ntuser.ini
