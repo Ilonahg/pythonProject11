@@ -4,3 +4,16 @@ echo "*.zip" >> .gitignore
 echo "*.lock" >> .gitignore
 echo "__pycache__/" >> .gitignore
 echo "*.pyc" >> .gitignore
+# Системные файлы Windows
+ntuser.dat*
+*.ini
+*.LOG*
+
+# Временные и служебные файлы
+*.lock
+__pycache__/
+*.pyc
+
+# Файлы IDE
+.idea/
+.vscode/
