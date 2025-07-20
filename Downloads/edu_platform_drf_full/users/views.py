@@ -6,7 +6,8 @@ from rest_framework import filters
 
 from .models import CustomUser
 from .serializers import CustomUserSerializer, PaymentSerializer
-from materials.models import Payment
+from .models import Payment
+
 
 class UserProfileView(RetrieveUpdateAPIView):
     queryset = CustomUser.objects.all()
