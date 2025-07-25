@@ -1,0 +1,19 @@
+# Системные файлы Windows
+ntuser.dat*
+*.ini
+*.LOG*
+
+# Файлы управления Python проектами
+poetry.lock
+pyproject.toml
+
+# Временные файлы Python
+__pycache__/
+*.pyc
+
+# Файлы IDE
+.idea/
+.vscode/
+**/ntuser.dat.LOG1
+**/ntuser.dat.LOG2
+**/ntuser.ini
