@@ -24,3 +24,18 @@ class Payment(models.Model):
 
     def __str__(self):
         return f'{self.user.email} - {self.amount}'
+
+
+from django.conf import settings
+from django.db import models
+from edu_platform.models import Course
+
+class Subscription(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'course')
+
+    def __str__(self):
+        return f"{self.user} -> {self.course}"

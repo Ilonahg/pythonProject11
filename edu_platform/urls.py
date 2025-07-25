@@ -9,3 +9,10 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/materials/', include('materials.urls')),
 ]
+
+from users.views import SubscriptionAPIView
+from django.urls import path
+
+urlpatterns += [
+    path('api/subscribe/', SubscriptionAPIView.as_view(), name='subscribe'),
+]
