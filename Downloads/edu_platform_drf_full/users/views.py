@@ -1,25 +1,44 @@
-from rest_framework.generics import RetrieveUpdateAPIView
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters
+from django.contrib.auth import get_user_model
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import viewsets
 
-from .models import CustomUser
-from .serializers import CustomUserSerializer, PaymentSerializer
+from .serializers import (
+    RegisterSerializer,
+    UserProfileSerializer,
+    PaymentSerializer,
+)
 from .models import Payment
 
+User = get_user_model()
 
-class UserProfileView(RetrieveUpdateAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
+
+class RegisterView(CreateAPIView):
+    """
+    POST /api/users/register/
+    Body: {"username": "...", "email": "...", "password": "..."}
+    """
+    serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
+    queryset = User.objects.all()
+
+
+class ProfileView(APIView):
+    """GET /api/users/profile/ — данные текущего пользователя."""
     permission_classes = [IsAuthenticated]
 
-    def get_object(self):
-        return self.request.user
+    def get(self, request):
+        serializer = UserProfileSerializer(request.user)
+        return Response(serializer.data)
 
-class PaymentViewSet(ModelViewSet):
-    queryset = Payment.objects.all()
+
+class PaymentsViewSet(viewsets.ModelViewSet):
+    """
+    /api/users/payments/ — список/создание
+    /api/users/payments/{id}/ — детально/изменение/удаление
+    """
+    queryset = Payment.objects.all().order_by("-id")
     serializer_class = PaymentSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-    filterset_fields = ['course', 'lesson', 'payment_method']
-    ordering_fields = ['payment_date']
+    permission_classes = [IsAuthenticated]
